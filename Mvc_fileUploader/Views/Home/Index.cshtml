@@ -18,7 +18,18 @@
         </div>
     </section>
 }
-<h3>HOME</h3>
+
+
+<h2>UploadDocument</h2>
+
+<h3>Upload a File:</h3>
+
+
+    @using (Html.BeginForm("FileUpload", "Home", FormMethod.Post, new {enctype = "multipart/form-data"}))
+    { 
+        <input type="file" name="fileToUpload" />
+        <input type="submit" name="Submit" value="upload" />  
+    }
 
 
     

@@ -15,7 +15,31 @@ namespace Mvc_fileUploader.Controllers
 
             return View();
         }
-                
+
+        [HttpPost]
+        public ActionResult FileUpload()
+        {
+            var fileToUpload = Request.Files[0];
+
+            if (fileToUpload != null && fileToUpload.ContentLength > 0)
+            {
+                string fileName = Path.GetFileName(fileToUpload.FileName);
+                string directory = Server.MapPath("~/fileUploads/");
+
+                if (!Directory.Exists( directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+
+                string path = Path.Combine(directory, fileName);
+                fileToUpload.SaveAs(path);
+            }
+
+            return RedirectToAction("Index");
+        }
+        
+        
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";
