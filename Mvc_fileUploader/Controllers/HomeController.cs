@@ -11,7 +11,7 @@ namespace Mvc_fileUploader.Controllers
     {
         public ActionResult Index()
         {
-            
+            ViewBag.Message = "Choose a file to upload!";
             return View("FileUpload");
         }
 
@@ -45,7 +45,7 @@ namespace Mvc_fileUploader.Controllers
             }
 
                 return View("FileUpload");
-
+            
         }
         
         
