@@ -6,7 +6,7 @@
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
+                <h2>h2</h2>
             </hgroup>
             <p>
                 To learn more about ASP.NET MVC visit
@@ -20,16 +20,12 @@
 }
 
 
-<h2>UploadDocument</h2>
+<h2>Index</h2>
 
-<h3>Upload a File:</h3>
+<h3>mvc Uploader:</h3>
 
 
-    @using (Html.BeginForm("FileUpload", "Home", FormMethod.Post, new {enctype = "multipart/form-data"}))
-    { 
-        <input type="file" name="fileToUpload" />
-        <input type="submit" name="Submit" value="upload" />  
-    }
+    
 
 
     

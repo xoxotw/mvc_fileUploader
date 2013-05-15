@@ -11,31 +11,41 @@ namespace Mvc_fileUploader.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
-            return View();
+            
+            return View("FileUpload");
         }
 
         [HttpPost]
-        public ActionResult FileUpload()
+        public ActionResult FileUpload(HttpPostedFileBase fileToUpload)
         {
-            var fileToUpload = Request.Files[0];
-
-            if (fileToUpload != null && fileToUpload.ContentLength > 0)
+            
+            if (ModelState.IsValid)
             {
-                string fileName = Path.GetFileName(fileToUpload.FileName);
-                string directory = Server.MapPath("~/fileUploads/");
-
-                if (!Directory.Exists( directory))
+                if (fileToUpload != null && fileToUpload.ContentLength > (1024 * 1024 * 1))  // 1MB limit
                 {
-                    Directory.CreateDirectory(directory);
+                    ModelState.AddModelError("fileToUpload", "Your file is to large. Maximum size allowed is 1MB !");
                 }
 
-                string path = Path.Combine(directory, fileName);
-                fileToUpload.SaveAs(path);
+                else
+                {
+                    string fileName = Path.GetFileName(fileToUpload.FileName);
+                    string directory = Server.MapPath("~/fileUploads/");
+
+                    if (!Directory.Exists(directory))
+                    {
+                        Directory.CreateDirectory(directory);
+                    }
+
+                    string path = Path.Combine(directory, fileName);
+                    fileToUpload.SaveAs(path);
+
+                    ModelState.Clear();
+                    ViewBag.Message = "File uploaded successfully!";
+                }
             }
 
-            return RedirectToAction("Index");
+                return View("FileUpload");
+
         }
         
         
