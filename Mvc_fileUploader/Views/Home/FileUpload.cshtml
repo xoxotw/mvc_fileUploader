@@ -11,6 +11,16 @@
     { 
         @Html.ValidationSummary();
         <input type="file" name="fileToUpload" /><br />
-        <input type="submit" name="Submit" value="upload" />  
-        @ViewBag.Message
+        <input type="submit" onclick="successMessage()" name="Submit" value="upload" />  
+        //@ViewBag.Message
+        <span id="sM">Choose a file to upload !</span>
     }
+
+
+<script>
+    function successMessage()
+    {
+        x = document.getElementById("sM");
+        x.innerHTML = "File upload successful !";
+    }
+</script>
