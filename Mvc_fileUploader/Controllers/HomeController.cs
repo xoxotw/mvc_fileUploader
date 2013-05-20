@@ -20,7 +20,7 @@ namespace Mvc_fileUploader.Controllers
             
             if (ModelState.IsValid)
             {
-                if (fileToUpload != null && fileToUpload.ContentLength > (1024 * 1024 * 1))  // 1MB limit
+                if (fileToUpload != null && fileToUpload.ContentLength > (1024 * 1024 * 2000))  // 1MB limit
                 {
                     ModelState.AddModelError("fileToUpload", "Your file is to large. Maximum size allowed is 1MB !");
                 }
