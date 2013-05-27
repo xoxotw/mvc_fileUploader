@@ -11,19 +11,35 @@ namespace Mvc_fileUploader.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Choose a file to upload !";
-            return View("FileUpload");
+            //ViewBag.Message = "Choose a file to upload !";
+            return View("starFileUpload");
         }
 
+        //[HttpGet]
+        public ActionResult starFileUpload()
+        {
+            return View();
+        }
+        
+        [HttpGet]
+        public ActionResult FileUpload()
+        {
+            return View();
+        }
+        
         [HttpPost]
         public ActionResult FileUpload(HttpPostedFileBase fileToUpload)
         {
             
             if (ModelState.IsValid)
             {
-                if (fileToUpload != null && fileToUpload.ContentLength > (1024 * 1024 * 2000))  // 1MB limit
+                if (fileToUpload != null && fileToUpload.ContentLength > (1024 * 1024 * 1000))  // 1GB limit
                 {
-                    ModelState.AddModelError("fileToUpload", "Your file is to large. Maximum size allowed is 1MB !");
+                    ModelState.AddModelError("fileToUpload", "Your file is to large. Maximum size allowed is 1GB !");
+                }
+                else if (fileToUpload == null)
+                {
+                    ModelState.AddModelError("fileToUpload", "You didn't pick any file !");
                 }
 
                 else
@@ -40,10 +56,10 @@ namespace Mvc_fileUploader.Controllers
                     fileToUpload.SaveAs(path);
 
                     ModelState.Clear();
-                    ViewBag.Message = "File uploaded successfully !";
-                    
+                    //ViewBag.Message = "File uploaded successfully !";
 
-                 }
+                    return View("FileUpload");
+                }
             }
 
             return View("FileUpload");
