@@ -15,7 +15,7 @@ namespace Mvc_fileUploader.Controllers
             return View("starFileUpload");
         }
 
-        //[HttpGet]
+        [HttpGet]
         public ActionResult starFileUpload()
         {
             return View();
@@ -52,12 +52,28 @@ namespace Mvc_fileUploader.Controllers
                         Directory.CreateDirectory(directory);
                     }
 
+                    // Check if file already exists or not.
+                    string pathToCheck = directory + fileName;
+                    string tempFileName = "";
+                    if (System.IO.File.Exists(pathToCheck))
+                    {
+                        int counter = 2;
+                        while (System.IO.File.Exists(pathToCheck))
+                        {
+                            tempFileName = counter.ToString() + fileName;
+                            pathToCheck = directory + tempFileName;
+                            counter++;
+                        }
+
+                        fileName = tempFileName;
+                        //directory += fileName;
+                        
+                    }
+                    
                     string path = Path.Combine(directory, fileName);
                     fileToUpload.SaveAs(path);
-
                     ModelState.Clear();
-                    //ViewBag.Message = "File uploaded successfully !";
-
+                    
                     return View("FileUpload");
                 }
             }
