@@ -1,0 +1,23 @@
+﻿@model Mvc_fileUploader.Models.UploadedFile
+
+@{
+    ViewBag.Title = "UploadedFiles";
+}
+
+<h2>UploadedFiles</h2>
+
+<table style="background-color:lightpink; border:solid 2px black;">
+    <tr>
+        <td>Name</td>
+        <td>Size</td>
+        <td>Preview</td>
+    </tr>
+
+    @foreach (var file in Model)
+    {
+        <tr>
+            <td>@file.Name</td>
+        </tr>       
+    }
+        
+</table>
