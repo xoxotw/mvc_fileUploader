@@ -1,4 +1,4 @@
-﻿@model Mvc_fileUploader.Models.UploadedFile
+﻿@model IEnumerable<Mvc_fileUploader.Models.UploadedFile>
 
 @{
     ViewBag.Title = "UploadedFiles";
@@ -6,7 +6,7 @@
 
 <h2>UploadedFiles</h2>
 
-<table style="background-color:lightpink; border:solid 2px black;">
+<table>
     <tr>
         <td>Name</td>
         <td>Size</td>
@@ -17,6 +17,7 @@
     {
         <tr>
             <td>@file.Name</td>
+            <td>@file.Size.ToString("0,0")</td>
         </tr>       
     }
         

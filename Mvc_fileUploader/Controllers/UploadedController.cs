@@ -11,12 +11,7 @@ namespace Mvc_fileUploader.Controllers
 {
     public class UploadedController : Controller
     {
-        public ActionResult Index()
-        {
-            return View("UploadedFiles");
-        }
-        
-        
+                
         [HttpGet]
         public ActionResult UploadedFiles()
         {
@@ -37,7 +32,7 @@ namespace Mvc_fileUploader.Controllers
                 uploadedFiles.Add(uploadedFile);
             }
 
-            return View();
+            return View(uploadedFiles);
         }
 
     }
