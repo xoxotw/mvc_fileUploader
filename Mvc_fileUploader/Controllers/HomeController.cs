@@ -33,9 +33,9 @@ namespace Mvc_fileUploader.Controllers
             
             if (ModelState.IsValid)
             {
-                if (fileToUpload != null && fileToUpload.ContentLength > (1024 * 1024 * 1000))  // 1GB limit
+                if (fileToUpload != null && fileToUpload.ContentLength > (1024 * 1024 * 2000))  // 2GB limit
                 {
-                    ModelState.AddModelError("fileToUpload", "Your file is to large. Maximum size allowed is 1GB !");
+                    ModelState.AddModelError("fileToUpload", "Your file is to large. Maximum size allowed is 2GB !");
                 }
                 else if (fileToUpload == null)
                 {
@@ -45,7 +45,7 @@ namespace Mvc_fileUploader.Controllers
                 else
                 {
                     string fileName = Path.GetFileName(fileToUpload.FileName);
-                    string directory = Server.MapPath("~/fileUploads/");
+                    string directory = Server.MapPath("~/Uploaded/fileUploads/");
 
                     if (!Directory.Exists(directory))
                     {

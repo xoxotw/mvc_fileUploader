@@ -11,6 +11,8 @@ namespace Mvc_fileUploader.Models
         public string Path { get; set; }
         
         public long Size { get; set; }
+
+        public bool? SizePrefix { get; set; }
         
     }
 }

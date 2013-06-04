@@ -8,7 +8,7 @@
 
 <table>
     <tr>
-        <td>Name</td>
+        <td>Name // [download]</td>
         <td>Size</td>
         <td>Preview</td>
     </tr>
@@ -16,8 +16,23 @@
     @foreach (var file in Model)
     {
         <tr>
-            <td>@file.Name</td>
-            <td>@file.Size.ToString("0,0")</td>
+            <td><a href="@file.Path">@file.Name</a></td>
+            
+            <td>@file.Size.ToString("0,0") @{   if (file.SizePrefix == false)
+                                                {
+                                                    <span>KB</span>
+                                                }
+                                                else if (file.SizePrefix == true)
+                                                { 
+                                                    <span>GB</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>MB</span>
+                                                }  
+                                            }
+                                             
+            </td>
         </tr>       
     }
         

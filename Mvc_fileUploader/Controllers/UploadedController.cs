@@ -17,7 +17,7 @@ namespace Mvc_fileUploader.Controllers
         {
             var uploadedFiles = new List<UploadedFile>();
             
-            var files = Directory.GetFiles(Server.MapPath("~/fileUploads/"));
+            var files = Directory.GetFiles(Server.MapPath("~/Uploaded/fileUploads/"));
 
             foreach (var file in files)
             {
@@ -27,7 +27,16 @@ namespace Mvc_fileUploader.Controllers
                 
                 uploadedFile.Name = Path.GetFileName(file);
                 uploadedFile.Size = fileInfo.Length;
-                uploadedFile.Path = ("~/fileUploads/") + Path.GetFileName(file);
+                uploadedFile.Path = ("fileUploads/") + Path.GetFileName(file);
+
+                if (uploadedFile.Size < 1048576)
+                {
+                    uploadedFile.SizePrefix = false;
+                }
+                else if (uploadedFile.Size > 1073741823)
+                {
+                    uploadedFile.SizePrefix = true;
+                }
                 
                 uploadedFiles.Add(uploadedFile);
             }
