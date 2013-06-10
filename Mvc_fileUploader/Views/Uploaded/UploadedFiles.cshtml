@@ -33,6 +33,18 @@
                                             }
                                              
             </td>
+
+            <td>@{  if (Path.GetExtension(file.Name) == ".jpg" ||
+                        Path.GetExtension(file.Name) == ".jpeg" ||
+                        Path.GetExtension(file.Name) == ".gif" ||
+                        Path.GetExtension(file.Name) == ".png")
+                    { 
+                        <img src="@file.Path" height="100" width="100" alt="imagePreview" />
+                    }
+                
+                }
+
+            </td>
         </tr>       
     }
         
