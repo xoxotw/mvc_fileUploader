@@ -288,6 +288,7 @@
     <Content Include="Views\Home\FileUpload.cshtml" />
     <Content Include="Views\Home\starFileUpload.cshtml" />
     <Content Include="Views\Uploaded\UploadedFiles.cshtml" />
+    <Content Include="Views\Home\_xUpload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
